@@ -1,9 +1,6 @@
 // Main function (entry point)
 async function main() {
-    const { wss } = await import("@modules/network");
-    wss.on("listening", (port) => {
-        console.log("WebSocket listening on port", port);
-    });
+    const { WSS } = (await import("@modules/network"));
 }
 
 // Start main.

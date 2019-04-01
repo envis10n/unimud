@@ -5,6 +5,7 @@ import { EventEmitter as EE } from "ee-ts";
 interface IWServerEvents {
     listening(port: number): void;
     connection(client: WServer.WClient): void;
+    disconnect(client: WServer.WClient): void;
 }
 
 interface IWClientEvents {
@@ -28,6 +29,7 @@ class WServer extends EE<IWServerEvents> {
             this.clients.set(client.uuid, client);
             socket.on("close", (code, reason) => {
                 client.emit("close", code, reason);
+                this.emit("disconnect", client);
                 this.clients.delete(client.uuid);
             });
             socket.on("message", (message) => {
@@ -41,6 +43,7 @@ class WServer extends EE<IWServerEvents> {
             socket.on("error", (err) => {
                 client.emit("error", err);
             });
+            this.emit("connection", client);
         });
     }
 }
