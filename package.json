@@ -1,0 +1,28 @@
+{
+  "devDependencies": {
+    "@types/uuid": "^3.4.4",
+    "cross-env": "^5.2.0",
+    "dotenv": "^7.0.0",
+    "ts-node": "^8.0.3",
+    "tsconfig-paths": "^3.8.0",
+    "tslint": "^5.14.0",
+    "typescript": "^3.4.1"
+  },
+  "name": "unimud",
+  "version": "0.0.1",
+  "description": "Entry for enterthemud2",
+  "main": "src/main.ts",
+  "scripts": {
+    "start": "cross-env TS_NODE_FILES=true ts-node -r tsconfig-paths/register -r dotenv/config ."
+  },
+  "repository": "https://github.com/envis10n/unimud.git",
+  "author": "envis10n, BobTheBob",
+  "license": "Unlicense",
+  "dependencies": {
+    "@types/node": "^11.13.0",
+    "@types/ws": "^6.0.1",
+    "ee-ts": "^1.0.1",
+    "uuid": "^3.3.2",
+    "ws": "^6.2.1"
+  }
+}
