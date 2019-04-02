@@ -15,7 +15,8 @@
   "description": "Entry for enterthemud2",
   "main": "src/main.ts",
   "scripts": {
-    "start": "cross-env TS_NODE_FILES=true NODE_OPTIONS=--experimental-worker ts-node -r tsconfig-paths/register -r dotenv/config ."
+    "start": "cross-env TS_NODE_FILES=true NODE_OPTIONS=--experimental-worker ts-node -r tsconfig-paths/register -r dotenv/config .",
+    "install": "yarn --cwd client"
   },
   "repository": "https://github.com/envis10n/unimud.git",
   "author": "envis10n, BobTheBob",
