@@ -1,5 +1,7 @@
 {
   "devDependencies": {
+    "@types/koa": "^2.0.48",
+    "@types/koa-static": "^4.0.1",
     "@types/uuid": "^3.4.4",
     "cross-env": "^5.2.0",
     "dotenv": "^7.0.0",
@@ -13,7 +15,7 @@
   "description": "Entry for enterthemud2",
   "main": "src/main.ts",
   "scripts": {
-    "start": "cross-env TS_NODE_FILES=true ts-node -r tsconfig-paths/register -r dotenv/config ."
+    "start": "cross-env TS_NODE_FILES=true NODE_OPTIONS=--experimental-worker ts-node -r tsconfig-paths/register -r dotenv/config ."
   },
   "repository": "https://github.com/envis10n/unimud.git",
   "author": "envis10n, BobTheBob",
@@ -23,6 +25,8 @@
     "@types/ws": "^6.0.1",
     "arguets": "^1.2.2",
     "ee-ts": "^1.0.1",
+    "koa": "^2.7.0",
+    "koa-static": "^5.0.0",
     "uuid": "^3.3.2",
     "ws": "^6.2.1"
   }
