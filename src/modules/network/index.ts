@@ -21,6 +21,9 @@ wss.on("listening", () => {
 wss.on("connection", (client) => {
     console.log(`[Net] Client connected. <${client.uuid}>`);
     _handlers.connect(client);
+    client.on("message", (message) => {
+        _handlers.message(client, message);
+    });
 });
 
 wss.on("disconnect", (client) => {
