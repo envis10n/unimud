@@ -25,6 +25,7 @@
     "@types/node": "^11.13.0",
     "@types/ws": "^6.0.1",
     "arguets": "^1.2.2",
+    "bordb": "https://github.com/envis10n/bordb.git",
     "ee-ts": "^1.0.1",
     "koa": "^2.7.0",
     "koa-static": "^5.0.0",

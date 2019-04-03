@@ -143,9 +143,19 @@ $(function(){
                 break;
                 default:
                     if(ws && ws.readyState == 1) {
-                        ws.send(input.trim());
+                        ws.json({
+                            event: "command",
+                            payload: {
+                                command: cmd,
+                                args
+                            }
+                        });
                     }
                 break;
+            }
+            if (terminal.getPrompt() !== terminal.default_prompt) {
+                terminal.setPrompt(terminal.default_prompt);
+                terminal.setMask(false);
             }
         }
     });

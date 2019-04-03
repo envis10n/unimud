@@ -2,7 +2,9 @@ $(function(){
     let uri = window.location.hostname == 'unimud.mudjs.net' ? "wss://unimud.mudjs.net/ws" : "ws://localhost:13387";
     let ws = new WebSocket(uri);
     
-    ws._send = ws.send;
+    ws.json = (obj) => {
+        ws.send(JSON.stringify(obj));
+    }
     
     ws.onopen = (ev) => {
         terminal.write("Connection established.");
@@ -23,8 +25,8 @@ $(function(){
                 break;
                 case 'prompt':
                     let inp = terminal.input.val().substring(terminal.prompt.length);
-                    terminal.setPrompt(dobj.prompt);
-                    terminal.setMask(Boolean(dobj.mask));
+                    terminal.setPrompt(dobj.payload.prompt);
+                    terminal.setMask(Boolean(dobj.payload.mask));
                 break;
             }
         } catch(e) {

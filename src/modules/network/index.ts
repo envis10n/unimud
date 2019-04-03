@@ -12,6 +12,16 @@ if (process.env.WS_PORT !== undefined && !isNaN(Number(process.env.WS_PORT))) {
 
 host = process.env.WS_HOST || "localhost";
 
+function asEvent(obj: IObjectAny): IEventObject {
+    if (typeof obj.event === "string"
+        && typeof obj.payload === "object"
+        && obj.payload !== null) {
+        return obj as IEventObject;
+    } else {
+        throw new TypeError("Invalid event object.");
+    }
+}
+
 const wss = new WServer(port, host);
 
 wss.on("listening", () => {
@@ -23,6 +33,13 @@ wss.on("connection", (client) => {
     _handlers.connect(client);
     client.on("message", (message) => {
         _handlers.message(client, message);
+    });
+    client.on("json", (dobj) => {
+        try {
+            _handlers.json(client, asEvent(dobj));
+        } catch (e) {
+            console.log(`[Events] Client send malformed event JSON.\n${JSON.stringify(dobj)}`);
+        }
     });
 });
 

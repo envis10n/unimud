@@ -2,6 +2,8 @@ import WebSocket from "ws";
 import { v4 } from "uuid";
 import { EventEmitter as EE } from "ee-ts";
 
+type PromptCallback = (payload: IObjectAny) => void;
+
 interface IWServerEvents {
     listening(port: number): void;
     connection(client: WServer.WClient): void;
@@ -51,6 +53,7 @@ class WServer extends EE<IWServerEvents> {
 namespace WServer {
     export class WClient extends EE<IWClientEvents> {
         public readonly uuid: string = v4();
+        public prompt: PromptCallback | null  = null;
         constructor(private socket: WebSocket) {
             super();
         }
@@ -59,6 +62,21 @@ namespace WServer {
         }
         public json(dobj: IObjectAny): void {
             this.send(JSON.stringify(dobj));
+        }
+        public ask(prompt: string, mask: boolean = false): Promise<string> {
+            return new Promise((resolve, reject) => {
+                this.prompt = (payload) => {
+                    this.prompt = null;
+                    resolve(`${payload.command} ${payload.args.join(" ")}`);
+                };
+                this.json({
+                    event: "prompt",
+                    payload: {
+                        mask,
+                        prompt,
+                    },
+                });
+            });
         }
     }
 }
