@@ -3,7 +3,7 @@ import Commands from "@modules/commands";
 // Main function (entry point)
 async function main() {
     // Load DB.
-    await import("@db");
+    const db = await import("@db");
     // Reload commands.
     await Commands.reload();
     // Start WebSocket server.

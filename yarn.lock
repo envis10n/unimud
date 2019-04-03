@@ -232,7 +232,7 @@ bignumber.js@^8.0.2:
 
 "bordb@https://github.com/envis10n/bordb.git":
   version "0.0.1"
-  resolved "https://github.com/envis10n/bordb.git#ede57bdebadb4b28450a3e1ffaf41ffc2855d25a"
+  resolved "https://github.com/envis10n/bordb.git#5e211e63a3c1d5105abe033b4b89955bfa437dfb"
   dependencies:
     "@types/cbor" "^2.0.0"
     "@types/fs-extra" "^5.0.5"

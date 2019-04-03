@@ -5,8 +5,8 @@ const command: Commands.ICommand  = {
     permissions: [],
     options: [],
     handler: async (client, args) => {
-        const colors = db.collection("colors");
-        const last = colors.findOne({_key: client.uuid});
+        const colors = await db.collection("colors");
+        const last = await colors.findOne({_key: client.uuid});
         let c: string = "None";
         if (last !== null) {
             c = last.color;
