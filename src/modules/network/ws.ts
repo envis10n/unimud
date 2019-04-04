@@ -57,6 +57,7 @@ namespace WServer {
         public account: Option<string> = null;
         constructor(private socket: WebSocket) {
             super();
+            this.socket.ping();
         }
         public send(message: string): void {
             this.socket.send(message);
