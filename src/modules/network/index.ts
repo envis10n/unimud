@@ -30,17 +30,10 @@ wss.on("listening", () => {
 
 wss.on("connection", (client) => {
     console.log(`[Net] Client connected. <${client.uuid}>`);
-    _handlers.connect(client);
-    client.on("message", (message) => {
-        _handlers.message(client, message);
-    });
     client.on("json", (dobj) => {
-        try {
-            _handlers.json(client, asEvent(dobj));
-        } catch (e) {
-            console.log(`[Events] Client send malformed event JSON.\n${JSON.stringify(dobj)}`);
-        }
+        _handlers.json(client, dobj as IEventObject);
     });
+    _handlers.connect(client);
 });
 
 wss.on("disconnect", (client) => {

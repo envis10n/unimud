@@ -18,13 +18,21 @@ async function commandHandler(client: WClient, payload: ICommandPayload): Promis
 }
 
 export default async function(client: WClient, dobj: IEventObject) {
-    switch (dobj.event) {
-        case "command":
-            if (client.prompt !== null) {
-                client.prompt(dobj.payload);
-            } else {
-                await commandHandler(client, dobj.payload as ICommandPayload);
-            }
-            break;
+    if (client.account === null ) {
+        if (dobj.event === "command" && client.prompt !== null) {
+            client.prompt(dobj.payload);
+        } else {
+            return;
+        }
+    } else {
+        switch (dobj.event) {
+            case "command":
+                if (client.prompt !== null) {
+                    client.prompt(dobj.payload);
+                } else {
+                    await commandHandler(client, dobj.payload as ICommandPayload);
+                }
+                break;
+        }
     }
 }

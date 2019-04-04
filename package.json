@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/koa": "^2.0.48",
     "@types/koa-static": "^4.0.1",
     "@types/uuid": "^3.4.4",
@@ -25,6 +26,7 @@
     "@types/node": "^11.13.0",
     "@types/ws": "^6.0.1",
     "arguets": "^1.2.2",
+    "bcrypt": "^3.0.5",
     "bordb": "https://github.com/envis10n/bordb.git",
     "ee-ts": "^1.0.1",
     "koa": "^2.7.0",

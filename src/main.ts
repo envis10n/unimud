@@ -7,7 +7,7 @@ async function main() {
     // Reload commands.
     await Commands.reload();
     // Start WebSocket server.
-    const { WSS } = (await import("@modules/network"));
+    await import("@modules/network");
     // Start web server thread.
     await import("@modules/web");
 }

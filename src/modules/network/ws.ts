@@ -54,6 +54,7 @@ namespace WServer {
     export class WClient extends EE<IWClientEvents> {
         public readonly uuid: string = v4();
         public prompt: PromptCallback | null  = null;
+        public account: Option<string> = null;
         constructor(private socket: WebSocket) {
             super();
         }
@@ -77,6 +78,11 @@ namespace WServer {
                     },
                 });
             });
+        }
+        public async yesNo(prompt: string): Promise<boolean> {
+            let res = await this.ask(`${prompt} (y/N) `);
+            res = res.trim().toLowerCase()[0];
+            return res === "y";
         }
     }
 }

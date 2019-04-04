@@ -28,9 +28,9 @@ try {
         return col.find(filter, limit);
     }
 
-    function findOne(collection: string, filter: IObjectAny): BorDB.IBorDoc {
+    function findOne(collection: string, filter: IObjectAny): Option<BorDB.IBorDoc> {
         const col = db.collection(collection);
-        return col.findOne(filter);
+        return col.findOne(filter) as Option<BorDB.IBorDoc>;
     }
 
     function update(collection: string, filter: IObjectAny, upd: IObjectAny) {
