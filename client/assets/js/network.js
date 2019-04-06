@@ -1,5 +1,5 @@
 $(function(){
-    let uri = window.location.hostname == 'unimud.mudjs.net' ? "wss://unimud.mudjs.net/ws" : "ws://localhost:13387";
+    let uri = window.location.hostname == 'unimud.mudjs.net' ? "wss://unimud.mudjs.net/ws" : `ws://${window.location.hostname}:13387`;
     let ws = new WebSocket(uri);
     
     ws.json = (obj) => {
